@@ -8,7 +8,7 @@ Bash aliases for developing under Linux for rails, and git
 
 
 ### Install:
-> Just copy past it in your `.bashrc` or `.bash_profile`
+> Just copy paste it in your `.bashrc` or `.bash_profile`
 files then `source ~/.bash_profile` to it.
 
 
