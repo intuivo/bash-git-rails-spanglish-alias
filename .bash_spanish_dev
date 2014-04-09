@@ -1,12 +1,9 @@
 
 
-function guardar {
-   git commit -m $1
-}
-
 function agregar {
    git add .
 }
+
 
 alias amazon='ssh -i ~/.ssh/your_amazon_key.pem ec2-user@ec2-12-345-67-89.us-east-0.compute.amazonaws.com'
 
@@ -26,7 +23,7 @@ alias empezar='iniciar && agregar && guardar $1'
 alias gemiza='rvm gemset create $1'
 alias gemizas='rvm gemset list'
 alias gemusar='rvm gemset use $1'
-
+alias guardar='git commit -m $1'
 alias iniciar='git init'
 alias instalar='bundle && bundle install && datar'
 alias jalar='git pull origen master'
@@ -48,6 +45,9 @@ alias remotar="git remote add origen $@"
 alias remoto='git remote -v'
 alias remotos='remoto'
 alias version='bundle exec rails -v'
+alias undoes='git reflog'
+alias undos='undoes'
+alias undo='git reset --hard HEAD@{$1}'
 alias comandos='echo -e "
 
  agregar = git add .
@@ -84,3 +84,15 @@ alias comandos='echo -e "
 alias ayuda="comandos"
 alias commandos="comandos"
 
+#generates an .rvmrc file from the current config
+function genera_rvmrc {
+
+	 rubyver=`ruby -v | cut -d 'p' -f 1 | cut -d ' ' -f 2`
+	 railsver=`rails -v | cut -d ' ' -f 2`
+	 gemauso=`rvm gemset name`
+	echo -e "
+		rvm use $rubyver
+		#using rails version $railsver
+		rvm gemset use $gemauso
+		" >> .rvmrc
+}
