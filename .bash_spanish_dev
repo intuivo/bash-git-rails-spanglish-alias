@@ -1,17 +1,14 @@
 
 
-function agregar {
-   git add .
-}
 
-
-alias amazon='ssh -i ~/.ssh/your_amazon_key.pem ec2-user@ec2-12-345-67-89.us-east-0.compute.amazonaws.com'
 
 function cambiar {
    git checkout $1
 }
+alias ayuda="comandos"
 alias checar='cambiar $1'
 alias compilar='bundle exec rake assets:precompile'
+alias commandos="comandos"
 alias consola='bundle exec rails console'
 alias correr='bundle exec rails server'
 alias crear='bundle exec rake db:create:all'
@@ -20,71 +17,10 @@ alias datar='crear && migrar && llenar'
 alias enlazar='remotar $1'
 alias escupir='bundle exec rake db:schema:dump'
 alias empezar='iniciar && agregar && guardar $1'
+alias estatus='git status'
 alias gemiza='rvm gemset create $1'
 alias gemizas='rvm gemset list'
 alias gemusar='rvm gemset use $1'
-alias guardar='git commit -m $1'
-alias iniciar='git init'
-alias instalar='bundle && bundle install && datar'
-alias jalar='git pull origen master'
-alias llenar='bundle exec rake db:seed'
-alias migrar='bundle exec rake db:migrate'
-alias origen='git remote add origen $1'
-alias poner='agregar && guardar $1'
-function pushar {
-	git push origen master
-}
-function subir {
-	agregar
-	guardar $@
-	pushar
-}
-alias rama='cambiar $1'
-alias ramas='git branch'
-alias remotar="git remote add origen $@"
-alias remoto='git remote -v'
-alias remotos='remoto'
-alias version='bundle exec rails -v'
-alias undoes='git reflog'
-alias undos='undoes'
-alias undo='git reset --hard HEAD@{$1}'
-alias comandos='echo -e "
-
- agregar = git add .
- amazon = ssh -i ~/.ssh/your_amazon_key.pem ec2-user@ec2-12-345-67-89.us-east-0.compute.amazonaws.com
- cambiar = git checkout $1
- compilar = bundle exec rake assets:precompile
- consola = bundle exec rails console
- correr = bundle exec rails server
- crear = bundle exec rake db:create:all
- culpar = git blame $1
- datar = crear && migrar && llenar
- enlazar = remotar $1
- escupir = bundle exec rake db:schema:dump
- gemiza = rvm gemset create $1
- gemizas = rvm gemset list
- gemusar = rvm gemset use $1
- guardar = git commit -m $1
- iniciar = git init
- instalar = bundle && bundle install && datar
- jalar = git pull origen master
- llenar = bundle exec rake db:seed
- migrar = bundle exec rake db:migrate
- origen = git remote add origen $1
- poner = agregar && guardar $1
- pushar = git push origen master
- ramas = git branch
- remotar = git remote add origen $@
- remoto = git remote -v
- remotos = remoto
- subir = agregar && guardar $1 && pushar
- version = bundle exec rails -v
-
-"'
-alias ayuda="comandos"
-alias commandos="comandos"
-
-#generates an .rvmrc file from the current config
 function genera_rvmrc {
 
 	 rubyver=`ruby -v | cut -d 'p' -f 1 | cut -d ' ' -f 2`
@@ -96,3 +32,77 @@ function genera_rvmrc {
 		rvm gemset use $gemauso
 		" >> .rvmrc
 }
+alias generarvm='genera_rvmrc'
+alias genera_rvm='genera_rvmrc'
+alias generar_rvm='genera_rvmrc'
+alias guardar='git commit -m $1'
+alias iniciar='git init'
+alias instalar='bundle && bundle install && datar'
+alias jalar='git pull origin master'
+alias llenar='bundle exec rake db:seed'
+alias migrar='bundle exec rake db:migrate'
+alias origen='git remote add origin $1'
+alias poner='agregar && guardar $1'
+function pushar {
+	git push origin master
+}
+function subir {
+	agregar
+	guardar $@
+	pushar
+}
+alias rama='cambiar $1'
+alias ramas='git branch'
+alias remotar="git remote add origin $@"
+alias remoto='git remote -v'
+alias remotos='remoto'
+alias version='bundle exec rails -v'
+alias undoes='git reflog'
+alias undos='undoes'
+alias undo='git reset --hard HEAD@{$1}'
+alias who_is_using_apt="ps aux | grep apt | grep -v 'grep'"
+alias comandos='echo -e "
+
+ agregar = git add . 
+ amazon = ssh -i ~/.ssh/your_amazon_key.pem ec2-user@ec2-12-345-67-89.us-east-0.compute.amazonaws.com
+ ayuda = comandos
+ cambiar = git checkout $1
+ compilar = bundle exec rake assets:precompile
+ commandos = comandos
+ consola = bundle exec rails console
+ correr = bundle exec rails server
+ crear = bundle exec rake db:create:all
+ culpar = git blame $1
+ datar = crear && migrar && llenar
+ enlazar = remotar $1
+ escupir = bundle exec rake db:schema:dump
+ estatus = git status
+ gemiza = rvm gemset create $1
+ gemizas = rvm gemset list
+ gemusar = rvm gemset use $1
+ genera_rvmrc = makes an .rvmrc file with the current ruby, rails and gemset
+ generarvm = genera_rvmrc
+ genera_rvm = genera_rvmrc
+ generar_rvm = genera_rvmrc
+ guardar = git commit -m $1
+ iniciar = git init
+ instalar = bundle && bundle install && datar
+ jalar = git pull origin master
+ llenar = bundle exec rake db:seed
+ migrar = bundle exec rake db:migrate
+ origen = git remote add origin $1
+ poner = agregar && guardar $1
+ pushar = git push origin master
+ ramas = git branch
+ remotar = git remote add origin $@
+ remoto = git remote -v
+ remotos = remoto
+ subir = agregar && guardar $1 && pushar
+ version = bundle exec rails -v
+
+"'
+
+
+
+
+
